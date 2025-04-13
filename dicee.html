@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dicee</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster"
+      rel="stylesheet"
+    />
+    <style>
+      .dice img {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="result">Refresh Me</h1>
+
+      <div class="dice">
+        <p>Player 1</p>
+        <img id="img_shower1" src="./images/dice1.png" />
+      </div>
+
+      <div class="dice" style="margin-left: 48px;">
+        <p>Player 2</p>
+        <img id="img_shower2" src="./images/dice2.png" />
+      </div>
+
+      <div>
+        <button id="button_play" onclick="getRandImage()">
+          🎲 Press to play
+        </button>
+      </div>
+    </div>
+
+    <footer>www 🎲 App Development 🎲 com</footer>
+
+    <script>
+      const ima_array = [
+        "dice1.png",
+        "dice2.png",
+        "dice3.png",
+        "dice4.png",
+        "dice5.png",
+        "dice6.png",
+      ];
+
+      function getRandImage() {
+        const random_index1 = Math.floor(Math.random() * ima_array.length);
+        const random_index2 = Math.floor(Math.random() * ima_array.length);
+        
+        const selected_image1 = ima_array[random_index1];
+        const selected_image2 = ima_array[random_index2];
+
+        document.getElementById('img_shower1').src = `./images/${selected_image1}`;
+        document.getElementById('img_shower2').src = `./images/${selected_image2}`;
+        
+        const result_text = document.getElementById("result");
+        if (random_index1 < random_index2){
+          result_text.textContent = "Player 2 Wins!";
+        }else if (random_index1 > random_index2){
+          result_text.textContent = "Player 1 Wins!";
+        } else{
+          result_text.textContent = "Match Draw!";
+        }
+      }
+    </script>
+  </body>
+</html>
